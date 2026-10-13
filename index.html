@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10110e">
+  <meta name="description" content="GOZIE is a creative freelancer working across graphic design, software development, promotion, affiliate marketing and storytelling.">
+  <title>GOZIE — Creative by nature. Built to make an impact.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #10110e;
+      --panel: #171914;
+      --panel-light: #1d2019;
+      --text: #f4f3ec;
+      --muted: #a5a69a;
+      --accent: #d5ff50;
+      --line: rgba(244, 243, 236, .12);
+      --font: "DM Sans", sans-serif;
+      --display: "Manrope", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      -webkit-font-smoothing: antialiased;
+    }
+    body::before {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background-image: radial-gradient(rgba(255,255,255,.13) .6px, transparent .6px);
+      background-size: 7px 7px;
+      content: "";
+      opacity: .13;
+      pointer-events: none;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { color: inherit; font: inherit; }
+    .wrap { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { width: 20px; height: 1px; background: currentColor; content: ""; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      background: rgba(16,17,14,.88);
+      backdrop-filter: blur(16px);
+    }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; }
+    .wordmark { font: 800 21px var(--display); letter-spacing: .09em; }
+    .wordmark span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 32px; color: #c4c5b9; font-size: 13px; }
+    .nav-links a:hover, .footer-links a:hover { color: var(--accent); }
+    .nav-cta, .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid var(--accent);
+      border-radius: 999px;
+      background: var(--accent);
+      color: #14160e;
+      font-size: 13px;
+      font-weight: 700;
+      transition: transform .2s ease, background .2s ease;
+    }
+    .nav-cta { padding: 11px 17px; }
+    .button { padding: 14px 20px; }
+    .nav-cta:hover, .button:hover { transform: translateY(-2px); background: #e2ff87; }
+    .button-quiet { border-color: var(--line); background: transparent; color: var(--text); }
+    .button-quiet:hover { border-color: var(--accent); background: transparent; color: var(--accent); }
+
+    .hero { position: relative; padding: 96px 0 86px; overflow: hidden; }
+    .hero::after {
+      position: absolute;
+      top: 50px;
+      right: -90px;
+      width: 480px;
+      height: 480px;
+      border: 1px solid rgba(213,255,80,.12);
+      border-radius: 50%;
+      box-shadow: 0 0 0 58px rgba(213,255,80,.025), 0 0 0 118px rgba(213,255,80,.018);
+      content: "";
+      pointer-events: none;
+    }
+    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.2fr .8fr; align-items: center; gap: 64px; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 730px;
+      margin: 24px 0 20px;
+      font: 800 clamp(58px, 8.4vw, 104px)/.98 var(--display);
+      letter-spacing: -.075em;
+    }
+    h1 .accent { color: var(--accent); }
+    .hero-copy { max-width: 475px; margin-bottom: 28px; color: var(--muted); font-size: 16px; line-height: 1.8; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero-note { display: flex; align-items: center; gap: 10px; margin-top: 35px; color: #b8baad; font-size: 12px; }
+    .availability { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 14px var(--accent); }
+    .orbit-card {
+      position: relative;
+      min-height: 320px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: linear-gradient(145deg, #202319, #13140f 68%);
+      overflow: hidden;
+    }
+    .orbit-card::before, .orbit-card::after { position: absolute; width: 250px; height: 250px; border: 1px solid rgba(213,255,80,.24); border-radius: 50%; content: ""; }
+    .orbit-card::after { width: 190px; height: 190px; border-color: rgba(213,255,80,.15); }
+    .orbit-center { position: relative; z-index: 1; display: grid; width: 126px; height: 126px; place-items: center; border-radius: 50%; background: var(--accent); color: #191b13; font: 800 27px var(--display); letter-spacing: -.08em; box-shadow: 0 0 70px rgba(213,255,80,.17); }
+    .orbit-label { position: absolute; z-index: 2; padding: 8px 12px; border: 1px solid rgba(255,255,255,.13); border-radius: 99px; background: #171914; color: #dedfd5; font-size: 11px; }
+    .label-design { top: 45px; left: 50%; transform: translateX(-50%); }
+    .label-code { right: 15px; top: 50%; }
+    .label-stories { bottom: 43px; left: 50%; transform: translateX(-50%); }
+    .label-growth { left: 15px; top: 50%; }
+
+    .intro-strip { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .intro-inner { min-height: 86px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .intro-inner p { margin: 0; color: var(--muted); font-size: 13px; }
+    .intro-inner strong { color: var(--text); font-weight: 600; }
+    .intro-mark { color: var(--accent); font-size: 20px; }
+
+    section { padding: 100px 0; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 38px; }
+    h2 { margin: 14px 0 0; font: 700 clamp(34px, 5vw, 54px)/1.1 var(--display); letter-spacing: -.06em; }
+    .section-description { max-width: 350px; margin: 0 0 3px; color: var(--muted); font-size: 14px; line-height: 1.7; }
+    .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .work-card { min-width: 0; border: 1px solid var(--line); border-radius: 7px; background: #151611; transition: transform .25s ease, border-color .25s ease; }
+    .work-card:hover { transform: translateY(-5px); border-color: rgba(213,255,80,.48); }
+    .project-open { display: block; width: 100%; padding: 0; border: 0; background: transparent; text-align: left; cursor: pointer; }
+    .artwork { position: relative; display: grid; min-height: 295px; place-items: center; overflow: hidden; }
+    .art-food { background: #c45c32; color: #fff3d8; }
+    .art-tailor { background: #a9a994; color: #1c2921; }
+    .art-yogurt { background: #e8d9c4; color: #3c3028; }
+    .artwork::before { position: absolute; inset: 12px; border: 1px solid currentColor; content: ""; opacity: .38; }
+    .poster-copy { position: absolute; z-index: 2; top: 34px; left: 35px; max-width: 66%; }
+    .poster-kicker { display: block; margin-bottom: 15px; font-size: 9px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; }
+    .poster-title { display: block; font: 800 clamp(26px, 3.1vw, 39px)/.93 var(--display); letter-spacing: -.07em; }
+    .poster-foot { position: absolute; z-index: 2; right: 31px; bottom: 28px; left: 35px; display: flex; justify-content: space-between; gap: 12px; font-size: 9px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    .food-dish { position: absolute; right: -6px; bottom: 16px; width: 178px; height: 178px; display: grid; place-items: center; border: 9px solid rgba(255,243,216,.84); border-radius: 50%; background: #e4b557; box-shadow: 0 10px 24px rgba(65,24,13,.23); transform: rotate(-13deg); }
+    .food-dish::before { width: 122px; height: 122px; border-radius: 50%; background: repeating-conic-gradient(#567542 0deg 10deg, #f5d381 10deg 28deg, #c5482f 28deg 39deg, #f5d381 39deg 53deg); content: ""; }
+    .food-dish::after { position: absolute; width: 47px; height: 47px; border-radius: 50%; background: #8b3e28; content: ""; }
+    .fabric { position: absolute; right: -34px; bottom: -57px; width: 220px; height: 255px; border: 2px solid rgba(28,41,33,.35); background: repeating-linear-gradient(132deg, transparent 0 16px, rgba(28,41,33,.2) 17px 19px, transparent 20px 31px); transform: rotate(24deg); }
+    .needle { position: absolute; right: 71px; top: 58px; width: 3px; height: 145px; border-radius: 4px; background: #e4c478; transform: rotate(38deg); }
+    .needle::before { position: absolute; top: -14px; left: -6px; width: 12px; height: 18px; border: 2px solid #e4c478; border-radius: 50%; content: ""; }
+    .yogurt-cup { position: absolute; right: 45px; bottom: 33px; width: 118px; height: 166px; border: 2px solid rgba(60,48,40,.25); border-top: 11px solid #fff9ee; border-radius: 9px 9px 29px 29px; background: linear-gradient(100deg, #f9f1e7, #c4d7aa); box-shadow: 0 16px 20px rgba(69,47,28,.14); transform: rotate(6deg); }
+    .yogurt-cup::before { position: absolute; top: 37px; left: 14px; width: 76px; color: #506d45; content: "YOGI\A GOODNESS"; white-space: pre; text-align: center; font: 800 13px/1.2 var(--display); letter-spacing: -.05em; }
+    .yogurt-cup::after { position: absolute; bottom: -2px; left: 26px; width: 47px; height: 39px; border-radius: 50% 50% 40% 40%; background: #d97765; content: ""; }
+    .project-meta { display: flex; align-items: start; justify-content: space-between; gap: 18px; padding: 19px 18px; }
+    .project-meta h3 { margin: 0 0 5px; font: 600 16px var(--display); }
+    .project-meta p { margin: 0; color: var(--muted); font-size: 12px; }
+    .project-arrow { color: var(--accent); font-size: 19px; transition: transform .2s ease; }
+    .work-card:hover .project-arrow { transform: translate(3px, -3px); }
+
+    .about { background: #151611; }
+    .about-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 80px; }
+    .about-copy { max-width: 550px; }
+    .about-copy > p { margin: 18px 0 28px; color: var(--muted); font-size: 15px; line-height: 1.9; }
+    .values { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .value-card { min-height: 132px; padding: 20px; border: 1px solid var(--line); border-radius: 5px; background: rgba(255,255,255,.018); }
+    .value-icon { color: var(--accent); font-size: 20px; }
+    .value-card h3 { margin: 14px 0 6px; font: 600 14px var(--display); }
+    .value-card p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+    .service-tags { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 27px; }
+    .service-tags span { padding: 9px 12px; border: 1px solid var(--line); border-radius: 99px; color: #d0d1c6; font-size: 12px; }
+
+    .contact-section { padding-bottom: 90px; }
+    .contact-box { position: relative; padding: 58px; border: 1px solid rgba(213,255,80,.3); border-radius: 7px; background: linear-gradient(125deg, #1c2015, #151611 70%); overflow: hidden; }
+    .contact-box::after { position: absolute; right: -44px; bottom: -170px; width: 380px; height: 380px; border: 1px solid rgba(213,255,80,.2); border-radius: 50%; box-shadow: 0 0 0 45px rgba(213,255,80,.025), 0 0 0 90px rgba(213,255,80,.018); content: ""; }
+    .contact-box h2 { position: relative; z-index: 1; max-width: 570px; margin-bottom: 15px; }
+    .contact-box > p { position: relative; z-index: 1; max-width: 430px; margin-bottom: 25px; color: var(--muted); font-size: 14px; line-height: 1.8; }
+    .contact-box .button { position: relative; z-index: 1; }
+    .contact-links { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 21px; margin-top: 28px; color: #c3c5b8; font-size: 12px; }
+    .contact-links a:hover { color: var(--accent); }
+    footer { border-top: 1px solid var(--line); }
+    .footer-inner { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 20px; color: var(--muted); font-size: 11px; }
+    .footer-inner p { margin: 0; }
+    .footer-links { display: flex; gap: 20px; }
+
+    .modal { position: fixed; inset: 0; z-index: 10; display: grid; place-items: center; padding: 20px; background: rgba(0,0,0,.76); backdrop-filter: blur(8px); }
+    .modal[hidden] { display: none; }
+    .modal-panel { position: relative; width: min(740px, 100%); max-height: min(90vh, 800px); overflow: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
+    .modal .artwork { min-height: 360px; }
+    .modal .poster-title { font-size: clamp(38px, 7vw, 65px); }
+    .modal-copy { padding: 25px 28px 30px; }
+    .modal-copy h2 { margin: 0 0 10px; font-size: 28px; }
+    .modal-copy p { max-width: 590px; margin: 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
+    .modal-close { position: absolute; top: 14px; right: 14px; z-index: 3; width: 39px; height: 39px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.25); border-radius: 50%; background: rgba(16,17,14,.8); font-size: 22px; cursor: pointer; }
+    .modal-close:hover { border-color: var(--accent); color: var(--accent); }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 36px, 540px); }
+      .nav { min-height: 68px; }
+      .nav-links { gap: 16px; font-size: 12px; }
+      .nav-links a:nth-child(2) { display: none; }
+      .nav-cta { padding: 9px 12px; font-size: 11px; }
+      .hero { padding: 72px 0 55px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 35px; }
+      .hero::after { top: 200px; right: -250px; }
+      .orbit-card { min-height: 255px; }
+      .intro-inner { min-height: 74px; }
+      .intro-inner p { font-size: 11px; }
+      section { padding: 76px 0; }
+      .section-heading { display: block; }
+      .section-description { margin-top: 14px; }
+      .work-grid { grid-template-columns: 1fr; }
+      .artwork { min-height: 330px; }
+      .about-grid { grid-template-columns: 1fr; gap: 30px; }
+      .contact-box { padding: 36px 24px; }
+      .footer-inner { padding: 20px 0; align-items: start; flex-direction: column; }
+    }
+    @media (max-width: 400px) {
+      .nav-links { gap: 12px; }
+      .nav-links a:first-child { display: none; }
+      .hero-actions .button { width: 100%; }
+      .values { grid-template-columns: 1fr; }
+      .artwork { min-height: 290px; }
+      .food-dish { right: -30px; transform: scale(.84) rotate(-13deg); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="wordmark" href="#home" aria-label="GOZIE home">GOZIE<span>.</span></a>
+      <div class="nav-links">
+        <a href="#work">My work</a>
+        <a href="#about">What I offer</a>
+        <a class="nav-cta" href="#contact">Let’s talk <span aria-hidden="true">↗</span></a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero wrap" id="home">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow">Creative freelancer · Nigeria</span>
+          <h1>Ideas into<br><span class="accent">impact.</span></h1>
+          <p class="hero-copy">Hey, I’m GOZIE. I bring creativity and technology together to help people and businesses show up, stand out, and grow.</p>
+          <div class="hero-actions">
+            <a class="button" href="#work">Explore my work <span aria-hidden="true">↓</span></a>
+            <a class="button button-quiet" href="https://wa.me/2348122977435" target="_blank" rel="noopener noreferrer">Message me <span aria-hidden="true">↗</span></a>
+          </div>
+          <p class="hero-note"><span class="availability" aria-hidden="true"></span> Open to exciting projects and collaborations</p>
+        </div>
+        <div class="orbit-card" aria-label="A mix of design, code, stories, and growth">
+          <span class="orbit-label label-design">Design</span>
+          <span class="orbit-label label-code">Code</span>
+          <span class="orbit-label label-stories">Stories</span>
+          <span class="orbit-label label-growth">Growth</span>
+          <span class="orbit-center">G.</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="intro-strip">
+      <div class="intro-inner wrap">
+        <p><strong>One creative mind.</strong> Many ways to move your idea forward.</p>
+        <span class="intro-mark" aria-hidden="true">✳</span>
+        <p>Thoughtful work. Real-world impact.</p>
+      </div>
+    </div>
+
+    <section class="wrap" id="work">
+      <div class="section-heading">
+        <div><span class="eyebrow">A few ideas made real</span><h2>Selected work</h2></div>
+        <p class="section-description">A taste of what I can create for your brand. Select any project to see its sample and story.</p>
+      </div>
+      <div class="work-grid">
+        <article class="work-card">
+          <button class="project-open" type="button" data-project="food" aria-label="View Savor House food campaign project">
+            <div class="artwork art-food" aria-hidden="true">
+              <div class="poster-copy"><span class="poster-kicker">Savor House · Lagos</span><span class="poster-title">GOOD<br>FOOD.<br>GOOD<br>MOOD.</span></div>
+              <div class="food-dish"></div>
+              <div class="poster-foot"><span>Made with love</span><span>Fresh every day</span></div>
+            </div>
+            <div class="project-meta"><div><h3>Savor House</h3><p>Food brand · Campaign design</p></div><span class="project-arrow" aria-hidden="true">↗</span></div>
+          </button>
+        </article>
+        <article class="work-card">
+          <button class="project-open" type="button" data-project="tailor" aria-label="View Thread & Form tailoring brand project">
+            <div class="artwork art-tailor" aria-hidden="true">
+              <div class="poster-copy"><span class="poster-kicker">Thread &amp; Form · Est. 2024</span><span class="poster-title">MADE<br>TO FIT<br>YOU.</span></div>
+              <div class="fabric"></div><div class="needle"></div>
+              <div class="poster-foot"><span>Crafted with intention</span><span>Wear your story</span></div>
+            </div>
+            <div class="project-meta"><div><h3>Thread &amp; Form</h3><p>Tailoring · Brand identity</p></div><span class="project-arrow" aria-hidden="true">↗</span></div>
+          </button>
+        </article>
+        <article class="work-card">
+          <button class="project-open" type="button" data-project="yogurt" aria-label="View Yogi Goodness yogurt brand project">
+            <div class="artwork art-yogurt" aria-hidden="true">
+              <div class="poster-copy"><span class="poster-kicker">Yogi Goodness · Everyday fresh</span><span class="poster-title">A LITTLE<br>GOODNESS<br>GOES A<br>LONG WAY.</span></div>
+              <div class="yogurt-cup"></div>
+              <div class="poster-foot"><span>Real fruit · Real good</span><span>Feel good inside</span></div>
+            </div>
+            <div class="project-meta"><div><h3>Yogi Goodness</h3><p>Yogurt · Product campaign</p></div><span class="project-arrow" aria-hidden="true">↗</span></div>
+          </button>
+        </article>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="about-grid wrap">
+        <div>
+          <span class="eyebrow">More than a job title</span>
+          <h2>Creative thinking.<br>Useful skills.</h2>
+          <div class="service-tags" aria-label="Services offered">
+            <span>Graphic designer</span><span>Freelancer</span><span>Software developer</span>
+            <span>Promoter</span><span>Affiliate marketer</span><span>Storyteller</span>
+          </div>
+        </div>
+        <div class="about-copy">
+          <p>I’m a versatile creative who loves turning a good idea into something people can see, use, and remember. Whether you need a standout design, a digital solution, or a story that connects, I bring care and curiosity to every project.</p>
+          <div class="values">
+            <article class="value-card"><span class="value-icon" aria-hidden="true">✳</span><h3>Made for your goals</h3><p>Work shaped around your audience, brand, and what success looks like to you.</p></article>
+            <article class="value-card"><span class="value-icon" aria-hidden="true">↗</span><h3>Creative &amp; practical</h3><p>Fresh ideas, thoughtful details, and solutions that work in the real world.</p></article>
+            <article class="value-card"><span class="value-icon" aria-hidden="true">◎</span><h3>Easy collaboration</h3><p>Clear communication and a friendly, dependable partner from start to finish.</p></article>
+            <article class="value-card"><span class="value-icon" aria-hidden="true">✦</span><h3>Built to make an impact</h3><p>Meaningful creative work that helps your project get noticed and grow.</p></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section wrap" id="contact">
+      <div class="contact-box">
+        <span class="eyebrow">Have something in mind?</span>
+        <h2>Let’s make your next idea happen.</h2>
+        <p>Tell me what you’re working on. I’d love to hear about your project and find a creative way to help.</p>
+        <a class="button" href="https://wa.me/2348122977435" target="_blank" rel="noopener noreferrer">Start a WhatsApp chat <span aria-hidden="true">↗</span></a>
+        <div class="contact-links">
+          <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=chigoziechukwu761%40gmail.com" target="_blank" rel="noopener noreferrer">chigoziechukwu761@gmail.com</a>
+          <a href="tel:+2348122977435">+234 812 297 7435</a>
+          <a href="https://x.com/goixe01" target="_blank" rel="noopener noreferrer">Follow on X ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner wrap">
+      <a class="wordmark" href="#home">GOZIE<span>.</span></a>
+      <p>Independent creative · Making good ideas happen.</p>
+      <div class="footer-links"><a href="https://x.com/goixe01" target="_blank" rel="noopener noreferrer">X ↗</a><a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=chigoziechukwu761%40gmail.com" target="_blank" rel="noopener noreferrer">Email ↗</a></div>
+      <p>© <span id="year"></span> GOZIE</p>
+    </div>
+  </footer>
+
+  <div class="modal" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="modal-panel">
+      <button class="modal-close" type="button" aria-label="Close project sample">×</button>
+      <div class="artwork" id="modal-artwork" aria-hidden="true"></div>
+      <div class="modal-copy"><h2 id="modal-title"></h2><p id="modal-description"></p></div>
+    </div>
+  </div>
+
+  <script>
+    const projects = {
+      food: {
+        title: "Savor House — food campaign",
+        description: "A bold, appetite-first campaign concept for a neighborhood food brand. Warm colors, a confident headline, and fresh visual details give this restaurant a friendly look that makes people want to stop by.",
+        artwork: '<div class="poster-copy"><span class="poster-kicker">Savor House · Lagos</span><span class="poster-title">GOOD<br>FOOD.<br>GOOD<br>MOOD.</span></div><div class="food-dish"></div><div class="poster-foot"><span>Made with love</span><span>Fresh every day</span></div>'
+      },
+      tailor: {
+        title: "Thread & Form — tailoring brand",
+        description: "A modern identity concept for a tailor who puts craft and personal style first. Clean typography, fabric-inspired details, and a calm, confident palette make the brand feel considered and unmistakably individual.",
+        artwork: '<div class="poster-copy"><span class="poster-kicker">Thread &amp; Form · Est. 2024</span><span class="poster-title">MADE<br>TO FIT<br>YOU.</span></div><div class="fabric"></div><div class="needle"></div><div class="poster-foot"><span>Crafted with intention</span><span>Wear your story</span></div>'
+      },
+      yogurt: {
+        title: "Yogi Goodness — yogurt campaign",
+        description: "A bright, wholesome product campaign concept for a feel-good yogurt brand. Soft natural colors, a simple product spotlight, and clear, cheerful messaging make everyday goodness look as good as it tastes.",
+        artwork: '<div class="poster-copy"><span class="poster-kicker">Yogi Goodness · Everyday fresh</span><span class="poster-title">A LITTLE<br>GOODNESS<br>GOES A<br>LONG WAY.</span></div><div class="yogurt-cup"></div><div class="poster-foot"><span>Real fruit · Real good</span><span>Feel good inside</span></div>'
+      }
+    };
+    const modal = document.querySelector("#project-modal");
+    const modalArtwork = document.querySelector("#modal-artwork");
+    const modalTitle = document.querySelector("#modal-title");
+    const modalDescription = document.querySelector("#modal-description");
+    const closeButton = document.querySelector(".modal-close");
+    let previousFocus;
+
+    document.querySelectorAll(".project-open").forEach((button) => {
+      button.addEventListener("click", () => {
+        const project = projects[button.dataset.project];
+        if (!project) return;
+        previousFocus = button;
+        modalArtwork.className = `artwork ${button.querySelector(".artwork").classList.contains("art-food") ? "art-food" : button.querySelector(".artwork").classList.contains("art-tailor") ? "art-tailor" : "art-yogurt"}`;
+        modalArtwork.innerHTML = project.artwork;
+        modalTitle.textContent = project.title;
+        modalDescription.textContent = project.description;
+        modal.hidden = false;
+        document.body.style.overflow = "hidden";
+        closeButton.focus();
+      });
+    });
+
+    function closeModal() {
+      modal.hidden = true;
+      document.body.style.overflow = "";
+      previousFocus?.focus();
+    }
+
+    closeButton.addEventListener("click", closeModal);
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) closeModal();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !modal.hidden) closeModal();
+    });
+    document.querySelector("#year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
